@@ -1,3 +1,5 @@
+*It was created using pico-sdk and C language without using MicroPython or Arduino IDE.  
+
 (1) The microcontroller board uses Raspberry Pico W.    
 (2) Pico W sends the following sensor data via a TCP socket at 5-second intervals.      
     - (a) GPIO input value    
