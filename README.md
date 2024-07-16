@@ -1,6 +1,6 @@
 *It was created using pico-sdk and C language.  
 
-- The microcontroller board uses Raspberry Pico W.    
+- This is the firmware for Raspberry Pico W.    
 - Pico W sends the following sensor data via a TCP socket at 5-second intervals.      
     - GPIO input value    
     - ADC value (voltage value, Pico W temperature sensor value)    
