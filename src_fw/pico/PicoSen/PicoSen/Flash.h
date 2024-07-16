@@ -10,7 +10,7 @@
 typedef struct _ST_FLASH_DATA {
     char           szFwName[FW_NAME_BUF_SIZE];  // FW名
     ULONG          fwVer;                       // FWバージョン
-    ST_NW_CONFIG   stNwConfig;                  // ネットワーク設定
+    ST_NW_CONFIG2  stNwConfig;                  // ネットワーク設定
     USHORT checksum;
 } ST_FLASH_DATA;
 

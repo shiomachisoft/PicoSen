@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stddef.h>
+#include <time.h>
 #include "pico/stdlib.h"
 #include "pico/binary_info.h"
 #include "hardware/gpio.h"
@@ -38,7 +39,7 @@
 #include "Frame.h"
 #include "Gpio.h"
 
-#include "TcpServer.h"
+#include "TcpCommon.h"
 #include "Flash.h"
 #include "Timer.h"
 #include "Cmd.h"

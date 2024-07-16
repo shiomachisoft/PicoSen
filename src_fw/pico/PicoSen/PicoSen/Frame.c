@@ -52,7 +52,8 @@ static ST_FRM_REQ_FRAME* FRM_RecvReqFrame(ULONG line)
 				return pstReqFrm; // NULLを返す
 			}
 			break;
-		case E_FRM_LINE_TCP_SERVER: // TCPサーバー
+		case E_FRM_LINE_TCP: // TCP
+			// 無線受信データの1byteのデキュー
 			if (!CMN_Dequeue(CMN_QUE_KIND_WL_RECV, &data, sizeof(UCHAR), true)) { // CPUコア1のエンキューとCPUコア0のデキューを排他する
 				return pstReqFrm; // NULLを返す
 			}
@@ -158,7 +159,7 @@ void FRM_SendMain()
 			iQue = E_FRM_LINE_USB;
 		}
 		else {
-			iQue = E_FRM_LINE_TCP_SERVER;
+			iQue = E_FRM_LINE_TCP;
 		} 
 
 		for (iData = 0; iData < FRM_SEND_BUF_SIZE; iData++) { // USB/無線送信バッファのサイズ分繰り返す
@@ -181,9 +182,9 @@ void FRM_SendMain()
 				}			
 			}
 			else {
-				if (tcp_server_is_connected()) { // TCP接続済み
+				if (tcp_cmn_is_connected()) { // TCP接続済み
 					// TCP送信
-					tcp_server_send_data(f_aaSendData[iLine], size);
+					tcp_cmn_send_data(f_aaSendData[iLine], size);
 				}			
 			}
 		}
@@ -212,7 +213,7 @@ void FRM_MakeAndSendResFrm(USHORT seqNo, USHORT cmd, USHORT errCode, USHORT data
 	// チェックサムを計算 
 	stResFrm.checksum = CMN_CalcChecksum(&stResFrm, frmSize); 
 	
-	// USB/無線送信要求を発行
+	// USB送信要求を発行
 	FRM_ReqToSend(E_FRM_LINE_USB, &stResFrm, frmSize); // ヘッダ部～データ部 ※データ部:aData[]メンバは全領域送信するわけではない
 	FRM_ReqToSend(E_FRM_LINE_USB, &stResFrm.checksum, sizeof(stResFrm.checksum)); // チェックサム部
 }
@@ -228,7 +229,7 @@ void FRM_ReqToSend(ULONG iLine, PVOID pBuf, ULONG size)
 		iQue = E_FRM_LINE_USB;
 	}
 	else {
-		iQue = E_FRM_LINE_TCP_SERVER;
+		iQue = E_FRM_LINE_TCP;
 	} 
 
 	for (iData = 0; iData < size; iData++) {
@@ -249,8 +250,8 @@ static bool FRM_IsConnected(ULONG line)
 		case E_FRM_LINE_USB: // USB
 			isConnected = stdio_usb_connected();
 			break;
-		case E_FRM_LINE_TCP_SERVER: // TCPサーバー
-			isConnected = tcp_server_is_connected();
+		case E_FRM_LINE_TCP: // TCP
+			isConnected = tcp_cmn_is_connected();
 			break;
 		default:
 			break;

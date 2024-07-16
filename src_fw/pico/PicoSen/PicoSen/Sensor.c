@@ -47,7 +47,7 @@ void SEN_Main()
         lvl_gp10, lvl_gp11, lvl_gp12, lvl_gp13, lvl_gp14, lvl_gp15,
         aAdcData[0], aAdcData[1], aAdcData[2], aAdcData[3], 
         aBme280Data[0], aBme280Data[1], aBme280Data[2]);
-    FRM_ReqToSend(E_FRM_LINE_TCP_SERVER, (PVOID)f_sendBuf, strlen(f_sendBuf));
+    FRM_ReqToSend(E_FRM_LINE_TCP, (PVOID)f_sendBuf, strlen(f_sendBuf));
 }
 
 // 電圧とオンボードの温度センサの温度を取得
@@ -94,7 +94,7 @@ static void SEN_GetBme280Data(float *pDataAry)
         goto __end;
     }
 
-    // センサデータのUSB/無線送信要求を発行
+    // センサデータを格納
     temp = comp_data.temperature;
     press = 0.01 * comp_data.pressure;
     hum = comp_data.humidity;

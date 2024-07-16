@@ -37,7 +37,9 @@ typedef enum _E_FRM_CMD {
     CMD_CLEAR_FW_ERR,               // FWエラークリア 
     CMD_ERASE_FLASH,                // FLASH消去
     CMD_SET_NW_CONFIG,              // ネットワーク設定変更
-    CMD_GET_NW_CONFIG               // ネットワーク設定取得
+    CMD_GET_NW_CONFIG,              // ネットワーク設定取得
+    CMD_SET_NW_CONFIG2,             // ネットワーク設定変更2
+    CMD_GET_NW_CONFIG2              // ネットワーク設定取得2   
 } E_FRM_CMD;
 
 // フレーム中のエラーコード
@@ -53,7 +55,7 @@ typedef enum _E_FRM_ERR
 // 回線の種類
 typedef enum _E_FRM_LINE {
     E_FRM_LINE_USB = 0,     // USB 
-    E_FRM_LINE_TCP_SERVER,  // TCPサーバー
+    E_FRM_LINE_TCP,         // TCP
     E_FRM_LINE_NUM
 } E_FRM_LINE;
 
@@ -107,7 +109,6 @@ typedef struct _ST_FRM_RECV_DATA_INFO {
 // [関数プロトタイプ宣言]
 void FRM_Init();
 void FRM_SendMain();
-void WL_SendMain();
 void FRM_RecvMain();
 void FRM_MakeAndSendResFrm(USHORT seqNo, USHORT cmd, USHORT errCode, USHORT dataSize, PVOID pBuf);
 void FRM_ReqToSend(ULONG iLine, PVOID pBuf, ULONG size);

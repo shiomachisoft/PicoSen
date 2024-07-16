@@ -422,7 +422,7 @@ namespace JigApp
                 {
                     if (!((label_FwName.Text == Str.STR_FW_NAME_PICOJIG_WL) 
                         || (label_FwName.Text == Str.STR_FW_NAME_PICOBRG)
-                        || (label_FwName.Text == Str.STR_FW_NAME_PICOSENTCP)
+                        || (label_FwName.Text == Str.STR_FW_NAME_PICOSEN)
                         ))
                     {
                         btn.Enabled = false;
@@ -432,7 +432,7 @@ namespace JigApp
 
                 if (btn == button_Uart)
                 {
-                    if (label_FwName.Text == Str.STR_FW_NAME_PICOSENTCP)
+                    if (label_FwName.Text == Str.STR_FW_NAME_PICOSEN)
                     {
                         btn.Enabled = false;
                         continue;

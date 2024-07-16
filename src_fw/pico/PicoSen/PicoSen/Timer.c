@@ -8,7 +8,7 @@
 #define TIMER_SENSOR_UPDATE_PERIOD 5000 // センサデータの更新周期(ms)
 
 // [ファイルスコープ変数の宣言]
-static repeating_timer_t f_stTimer ={0};        // 定期タイマコールバック登録時に渡すパラメータ
+static repeating_timer_t f_stTimer = {0};       // 定期タイマコールバック登録時に渡すパラメータ
 static ULONG f_timerCnt_wdt = 0;                // WDTタイマのタイマカウント
 static ULONG f_timerCnt_stabilizationWait = 0;  // 起動してからの安定待ち時間のタイマカウント
 static ULONG f_aTimerCnt_recvTimeout[E_FRM_LINE_NUM] = {0}; // 右記のタイマカウント:要求フレームのヘッダを受信後、TIMER_RECV_TIMEOUT[ms]経過しても要求フレームの末尾まで受信してない場合はタイムアウトとする

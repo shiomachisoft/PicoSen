@@ -4,27 +4,27 @@
 
 2. Place the pico folder in src_fw directly under the C drive.
 
-3. Place the ver1.5.1 pico-sdk folder in c:/pico/PicoSenTcp/
+3. Place the ver1.5.1 pico-sdk folder in c:/pico/PicoSen/
 
 4. Overwrite the following file with stdio_usb.c in the pico-sdk-1.5.1_replace folder.
 
-	C:/pico/PicoSenTcp/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c
+	C:/pico/PicoSen/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c
 
 5. Command
 
    	<Release>
 	setx PICO_SDK_PATH "../pico-sdk" 
-	cd C:/pico/PicoSenTcp
+	cd C:/pico/PicoSen
 	mkdir build
-	cd C:/pico/PicoSenTcp/build
+	cd C:/pico/PicoSen/build
 	cmake -G "NMake Makefiles" .. -DPICO_BOARD=pico_w -DCMAKE_BUILD_TYPE=Release -DPICO_DEOPTIMIZED_DEBUG=off
 	nmake
 	
 	<Debug>
 	setx PICO_SDK_PATH "../pico-sdk" 
-	cd C:/pico/PicoSenTcp
+	cd C:/pico/PicoSen
 	mkdir build
-	cd C:/pico/PicoSenTcp/build
+	cd C:/pico/PicoSen/build
 	cmake -G "NMake Makefiles" .. -DPICO_BOARD=pico_w -DCMAKE_BUILD_TYPE=Debug -DPICO_DEOPTIMIZED_DEBUG=on
 	nmake	
 

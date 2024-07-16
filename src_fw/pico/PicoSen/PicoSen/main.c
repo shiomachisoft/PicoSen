@@ -64,11 +64,11 @@ static void MAIN_MainLoop_Core1()
 		MAIN_ControlLed();
 
 #ifdef MY_BOARD_PICO_W
-		// TCPサーバーのメイン処理
-		tcp_server_main();
+		// TCPのメイン処理
+		tcp_cmn_main();
 #endif
 
-		// USB/無線送信メイン処理
+		// USB/無線送信のメイン処理
 		FRM_SendMain();
 	}
 }
@@ -81,7 +81,7 @@ static void MAIN_ControlLed()
 	// LEDのON/OFFを変更するタイミングか否かを取得
 	if (true == TIMER_IsLedChangeTiming()) {
 		// LEDのON/OFFを決定
-		if (true == tcp_server_is_link_up()) {
+		if (true == tcp_cmn_is_link_up()) {
 			bLedOn = true;
 		} 
 		else {

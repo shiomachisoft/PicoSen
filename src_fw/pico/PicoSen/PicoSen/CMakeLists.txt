@@ -6,13 +6,15 @@ if (TARGET tinyusb_device)
 	        -Wno-maybe-uninitialized
 	        )
 
-    add_executable(PicoSenTcp
+    add_executable(PicoSen
             main.c
             Cmd.c
             Flash.c
             Common.c
             Gpio.c
             Timer.c
+            TcpCommon.c
+            TcpClient.c
             TcpServer.c
             Frame.c
             Sensor.c
@@ -20,13 +22,13 @@ if (TARGET tinyusb_device)
             bme280/pico_userspace.c      
             )
 
-	target_include_directories(PicoSenTcp PRIVATE
+	target_include_directories(PicoSen PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
         ${CMAKE_CURRENT_LIST_DIR}/.. # for our common lwipopts
         )
 
     # pull in common dependencies
-    target_link_libraries(PicoSenTcp 
+    target_link_libraries(PicoSen 
     		pico_cyw43_arch_lwip_poll
 			pico_stdlib 
 			hardware_adc 
@@ -44,12 +46,12 @@ if (TARGET tinyusb_device)
 			)
 
     # enable usb output, disable uart output
-    pico_enable_stdio_usb(PicoSenTcp 1)
-    pico_enable_stdio_uart(PicoSenTcp 0)
+    pico_enable_stdio_usb(PicoSen 1)
+    pico_enable_stdio_uart(PicoSen 0)
 
     # create map/bin/hex/uf2 file etc.
-    pico_add_extra_outputs(PicoSenTcp)
+    pico_add_extra_outputs(PicoSen)
 
 elseif(PICO_ON_DEVICE)
-    message(WARNING "not building PicoSenTcp because TinyUSB submodule is not initialized in the SDK")
+    message(WARNING "not building PicoSen because TinyUSB submodule is not initialized in the SDK")
 endif()

@@ -4,27 +4,27 @@
 
 2. src_fwの中のpicoフォルダをcドライブの直下に置きます。
 
-3. c:\pico\PicoSenTcp\ にver1.5.1のpico-sdkフォルダを置きます。
+3. c:\pico\PicoSen\ にver1.5.1のpico-sdkフォルダを置きます。
 
 4. 下記のファイルを、pico-sdk-1.5.1_replaceフォルダにあるstdio_usb.cで上書きします。
 
-  C:\pico\PicoSenTcp\pico-sdk\src\rp2_common\pico_stdio_usb\stdio_usb.c
+  C:\pico\PicoSen\pico-sdk\src\rp2_common\pico_stdio_usb\stdio_usb.c
   
 5. コマンド
 
    	<リリース>
 	setx PICO_SDK_PATH "../pico-sdk" 
-	cd C:/pico/PicoSenTcp
+	cd C:/pico/PicoSen
 	mkdir build
-	cd C:/pico/PicoSenTcp/build
+	cd C:/pico/PicoSen/build
 	cmake -G "NMake Makefiles" .. -DPICO_BOARD=pico_w -DCMAKE_BUILD_TYPE=Release -DPICO_DEOPTIMIZED_DEBUG=off
 	nmake
 	
 	<デバッグ>
 	setx PICO_SDK_PATH "../pico-sdk" 
-	cd C:/pico/PicoSenTcp
+	cd C:/pico/PicoSen
 	mkdir build
-	cd C:/pico/PicoSenTcp/build
+	cd C:/pico/PicoSen/build
 	cmake -G "NMake Makefiles" .. -DPICO_BOARD=pico_w -DCMAKE_BUILD_TYPE=Debug -DPICO_DEOPTIMIZED_DEBUG=on
 	nmake	
 	   

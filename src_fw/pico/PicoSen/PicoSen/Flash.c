@@ -60,7 +60,7 @@ void FLASH_Read(ST_FLASH_DATA *pstFlashData)
 
     if (bDeafult) {
         // デフォルトの設定データを採用
-        tcp_server_set_default(&pstFlashData->stNwConfig);
+        tcp_cmn_set_default(&pstFlashData->stNwConfig);
     }
 }
 
